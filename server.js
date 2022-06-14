@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 require('dotenv').config()
+const PORT = 3000
 
 //set EJS as template engine to generate HTML
 app.set('view engine', 'ejs')
@@ -34,7 +35,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const db = client.db('star-wars-quotes')
         const quotesCollection = db.collection('quotes')
 
-        app.listen(3000, () => {
+        app.listen(process.env.PORT || PORT, () => {
             console.log('Listening on 3000')
         })
         
