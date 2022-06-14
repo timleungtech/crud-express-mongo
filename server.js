@@ -39,15 +39,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const db = client.db('star-wars-quotes')
         const quotesCollection = db.collection('quotes')
 
-
-        
         //sendFile
         app.get('/', (req, res) => {
         // res.sendFile(__dirname + '/index.html')
         // console.log(__dirname)
         db.collection('quotes').find().toArray()
             .then(results => {
-                // console.log(results)
+                console.log(results)
                 //res.render(view, locals)
                 res.render('index.ejs', {quotes: results})
             })
