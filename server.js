@@ -22,6 +22,10 @@ app.use(express.static('public'))
 //database login
 const connectionString = process.env.DB_STRING
 
+app.listen(process.env.PORT || PORT, () => {
+    console.log('Listening on 3000')
+})
+
 //connect to db
 // MongoClient.connect(connectionString, (err, client) => {
 //     if (err) return console.error(err)
@@ -35,9 +39,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const db = client.db('star-wars-quotes')
         const quotesCollection = db.collection('quotes')
 
-        app.listen(process.env.PORT || PORT, () => {
-            console.log('Listening on 3000')
-        })
+
         
         //sendFile
         app.get('/', (req, res) => {
