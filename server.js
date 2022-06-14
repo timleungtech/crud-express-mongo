@@ -4,9 +4,10 @@
 
 // console.log('May Node be with you')
 const express = require('express')
-const bodyParser= require('body-parser')
+const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
+require('dotenv').config()
 
 //set EJS as template engine to generate HTML
 app.set('view engine', 'ejs')
@@ -18,7 +19,7 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 //database login
-const connectionString = 'mongodb+srv://**USERNAME**:**PASSWORD**@**CLUSTERNAME**.smtosyq.mongodb.net/?retryWrites=true&w=majority'
+const connectionString = process.env.DB_STRING
 
 //connect to db
 // MongoClient.connect(connectionString, (err, client) => {
@@ -33,7 +34,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const db = client.db('star-wars-quotes')
         const quotesCollection = db.collection('quotes')
 
-        app.listen(3000, function() {
+        app.listen(3000, () => {
             console.log('Listening on 3000')
         })
         
