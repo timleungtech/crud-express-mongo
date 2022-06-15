@@ -23,7 +23,7 @@ app.use(express.static('public'))
 const connectionString = process.env.DB_STRING
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log('Listening on 3000')
+    console.log('Listening on env port or 3000')
 })
 
 //connect to db
@@ -45,7 +45,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         // console.log(__dirname)
         db.collection('quotes').find().toArray()
             .then(results => {
-                console.log(results)
+                // console.log(results)
                 //res.render(view, locals)
                 res.render('index.ejs', {quotes: results})
             })
